@@ -1,18 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <StartupObject>WebApiSample.Program</StartupObject>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+    <DocumentationFile>E:\Lingann\01_Developing\WebApi\WebApiSample\WebApiSample\WebApiSample.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\13\Controllers\" />
-    <Folder Include="Areas\13\Data\" />
-    <Folder Include="Areas\13\Models\" />
-    <Folder Include="Areas\13\Views\" />
-    <Folder Include="wwwroot\" />
+    <Compile Remove="Areas\**" />
+    <Content Remove="Areas\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <None Remove="Areas\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,8 +26,68 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
     <PackageReference Include="System.Console" Version="4.3.1" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\backbone-min.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\bootstrap.min.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\bootstrap.min.js.map" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\fontawesome-all.min.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\handlebars-2.0.0.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\highlight.pack.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\jquery-3.2.1.min.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\jquery.wiggle.min.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\marked.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\scrollPosStyler.min.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\swagger-oauth.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\underscore-min.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\lib\underscore-min.map" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\swagger-ui.js" />
+    <None Include="wwwroot\swagger\ui\bootstrapUI\assets\swagger-ui.min.js" />
+    <None Include="wwwroot\swagger\ui\hub\fonts\droid-sans-v6-latin-700.svg" />
+    <None Include="wwwroot\swagger\ui\hub\fonts\droid-sans-v6-latin-700.woff2" />
+    <None Include="wwwroot\swagger\ui\hub\fonts\droid-sans-v6-latin-regular.svg" />
+    <None Include="wwwroot\swagger\ui\hub\fonts\droid-sans-v6-latin-regular.woff2" />
+    <None Include="wwwroot\swagger\ui\hub\lib\backbone-min.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\bootstrap.min.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\handlebars-2.0.0.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\highlight.7.3.pack.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\jquery-1.8.0.min.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\jquery.ba-bbq.min.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\jquery.slideto.min.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\jquery.wiggle.min.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\jsoneditor.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\marked.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\swagger-oauth.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\underscore-min.js" />
+    <None Include="wwwroot\swagger\ui\hub\lib\underscore-min.map" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\js\docs.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\js\jquery.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\js\jquery.json-viewer.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\js\jsrender.min.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\font\iconfont.svg" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\layui.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\dest\layui.all.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\carousel.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\code.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\element.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\flow.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\form.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\jquery.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\jsrender.min.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\laydate.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\layedit.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\layer.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\laypage.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\laytpl.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\mobile.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\table.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\tree.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\upload.js" />
+    <None Include="wwwroot\swagger\ui\layer\webjars\layui\lay\modules\util.js" />
   </ItemGroup>
 
 </Project>

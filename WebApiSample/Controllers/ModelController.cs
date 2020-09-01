@@ -17,6 +17,21 @@ namespace WebApiSample.Controllers
             Context = context;
         }
 
+        /// <summary>
+        /// 添加模型
+        /// </summary>
+        /// <remarks>
+        ///  示例:/n
+        ///
+        ///     Post api/model
+        ///     {
+        ///          "id" : "1235",
+        ///          "name": "钢铁侠",
+        ///           "url": "alioss.shenzhen.buket.ironman.fbx"
+        ///     }
+        /// </remarks>
+        /// <param name="model">模型名称</param>
+        /// <returns></returns>
         [HttpPost]
         public Model AddModel([FromForm]Model model)
         {

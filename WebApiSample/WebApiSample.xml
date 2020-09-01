@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApiSample</name>
+    </assembly>
+    <members>
+        <member name="M:WebApiSample.Controllers.ModelController.AddModel(WebApiSample.Models.Model)">
+             <summary>
+             添加模型
+             </summary>
+             <remarks>
+              示例:/n
+            
+                 Post api/model
+                 {
+                      "id" : "1235",
+                      "name": "钢铁侠",
+                       "url": "alioss.shenzhen.buket.ironman.fbx"
+                 }
+             </remarks>
+             <param name="model">模型名称</param>
+             <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            获取值信息
+            </summary>
+            <param name="id">id值</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Controllers.ValuesController.Post(System.String)">
+            <summary>
+            获取值信息
+            </summary>
+            <param name="value">值信息</param>
+        </member>
+        <member name="M:WebApiSample.Controllers.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            获取值信息
+            </summary>
+            <param name="id">id</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:WebApiSample.Controllers.ValuesController.Delete(System.Int32)">
+            <summary>
+            值删除
+            </summary>
+            <param name="id">id</param>
+        </member>
+        <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureCors(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            配置跨域 
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureIISIntegration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+             配置IIS
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureSwaggerGen(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            配置Swagger中间件
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:WebApiSample.Models.ISQLiteHelper.ExecuteQuery(System.String)">
+            <summary>
+            执行SQL命令
+            </summary>
+            <param name="queryString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Models.ISQLiteHelper.CloseConnection">
+            <summary>
+            关闭数据库链接
+            </summary>
+        </member>
+        <member name="M:WebApiSample.Models.ISQLiteHelper.ReadFullTable(System.String)">
+            <summary>
+            读取整张数据表
+            </summary>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Models.ISQLiteHelper.InsertValues(System.String,System.String[])">
+            <summary>
+            像指定数据表中插入数据
+            </summary>
+            <param name="tableName"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Models.ISQLiteHelper.UpdateValues(System.String,System.String[],System.String[],System.String,System.String,System.String)">
+            <summary>
+            更新指定数据表内的数据
+            </summary>
+            <param name="tableName">表名称</param>
+            <param name="colNames">字段名</param>
+            <param name="colValues">字段名对应的数据</param>
+            <param name="key">关键字</param>
+            <param name="value">关键字对应的值</param>
+            <param name="operation">运算符：=, <!--<--> ,>,...默认“=”</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Models.ISQLiteHelper.DeleteValuesOR(System.String,System.String[],System.String[],System.String[])">
+            <summary>
+            删除指定数据表内的数据
+            </summary>
+            <param name="tableName">数据表名称</param>
+            <param name="colNames">字段名</param>
+            <param name="colValues">字段名对应的数据</param>
+            <param name="operations">运算符</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Models.ISQLiteHelper.DeleteValuesAND(System.String,System.String[],System.String[],System.String[])">
+            <summary>
+            删除指定数据表内的数据
+            </summary>
+            <param name="tableName">数据表名称</param>
+            <param name="colNames">字段名</param>
+            <param name="colValues">字段名对应的数据</param>
+            <param name="operations">运算符</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Models.ISQLiteHelper.CreateTable(System.String,System.String[],System.String[])">
+            <summary>
+            创建数据表
+            </summary>
+            <param name="tableName">数据表名</param>
+            <param name="colNames">字段名</param>
+            <param name="colTypes">字段名类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Models.ISQLiteHelper.ReadTable(System.String,System.String[],System.String[],System.String[],System.String[])">
+            <summary>
+            读取表名
+            </summary>
+            <param name="tableName"></param>
+            <param name="items"></param>
+            <param name="colNames"></param>
+            <param name="operations"></param>
+            <param name="colValues"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebApiSample.Models.SQLiteHelper">
+            <summary>
+             SQLite 操作类
+            </summary>
+        </member>
+        <member name="M:WebApiSample.Models.SQLiteHelper.ExecuteQuery(System.String)">
+            <summary>
+            执行SQL命令
+            </summary>
+            <param name="queryString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Models.SQLiteHelper.Log(System.String)">
+            <summary>
+            本类log
+            </summary>
+            <param name="s"></param>
+        </member>
+    </members>
+</doc>

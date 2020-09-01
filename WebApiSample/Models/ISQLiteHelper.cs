@@ -42,7 +42,7 @@ namespace WebApiSample.Models
         /// <param name="colValues">字段名对应的数据</param>
         /// <param name="key">关键字</param>
         /// <param name="value">关键字对应的值</param>
-        /// <param name="operation">运算符：=,<,>,...默认“=”</param>
+        /// <param name="operation">运算符：=, <!--<--> ,>,...默认“=”</param>
         /// <returns></returns>
         SQLiteDataReader UpdateValues(string tableName, string[] colNames, string[] colValues, string key, string value, string operation = "=");
 

@@ -18,6 +18,11 @@ namespace WebApiSample.Controllers
         }
 
         // GET api/values/5
+        /// <summary>
+        /// 获取值信息
+        /// </summary>
+        /// <param name="id">id值</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
@@ -25,18 +30,31 @@ namespace WebApiSample.Controllers
         }
 
         // POST api/values
+        /// <summary>
+        /// 获取值信息
+        /// </summary>
+        /// <param name="value">值信息</param>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
         // PUT api/values/5
+        /// <summary>
+        /// 获取值信息
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="value">value</param>
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE api/values/5
+        /// <summary>
+        /// 值删除
+        /// </summary>
+        /// <param name="id">id</param>
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

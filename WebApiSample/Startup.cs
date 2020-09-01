@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebApiSample.Models;
 using WebApiSample.Context;
+using WebApiSample.Extensions;
 namespace WebApiSample
 {
     public class Startup
@@ -24,11 +25,18 @@ namespace WebApiSample
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        // 该方法用于服务注册
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
             services.AddDbContext<ModelDbContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // 配置跨域服务
+            services.ConfigureCors();
+            // 配置IIS
+            services.ConfigureIISIntegration();
+            // 配置Swagger
+            services.ConfigureSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,8 +51,15 @@ namespace WebApiSample
                 app.UseHsts();
             }
 
+            // 添加Swagger UI中间件
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc();   // 启用MVC模式，声明了属性路由
         }
     }
 }
