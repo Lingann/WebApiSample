@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebApiSample.Models;
-using WebApiSample.Context;
+
 using WebApiSample.Extensions;
 namespace WebApiSample
 {
@@ -29,7 +29,6 @@ namespace WebApiSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<ModelDbContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             // 配置跨域服务
             services.ConfigureCors();
@@ -37,6 +36,11 @@ namespace WebApiSample
             services.ConfigureIISIntegration();
             // 配置Swagger
             services.ConfigureSwaggerGen();
+            // 连接数据库
+            services.ConfigureSqliteContext(Configuration);
+            // 添加存储库
+            services.ConfigureRepositoryWrapper();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +61,7 @@ namespace WebApiSample
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseMvc();   // 启用MVC模式，声明了属性路由
         }

@@ -8,7 +8,10 @@ using Microsoft.OpenApi.Models;
 using System.Security.Policy;
 using System.Reflection;
 using System.IO;
-
+using Microsoft.Extensions.Configuration;
+using Entities;
+using Repository;
+using Contracts;
 namespace WebApiSample.Extensions
 {
     public static class ServiceExtensions
@@ -68,6 +71,25 @@ namespace WebApiSample.Extensions
                 c.IncludeXmlComments(xmlPath);
             });
             services.AddSwaggerGen();
+        }
+
+        /// <summary>
+        /// 配置连接数据库
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="config"></param>
+        public static void ConfigureSqliteContext(this IServiceCollection services, IConfiguration config)
+        {
+            services.AddDbContext<RepositoryContext>();
+        }
+
+        /// <summary>
+        /// 加入存储库
+        /// </summary>
+        /// <param name="services"></param>
+        public static void ConfigureRepositoryWrapper(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
         }
     }
 }

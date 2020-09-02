@@ -4,7 +4,21 @@
         <name>WebApiSample</name>
     </assembly>
     <members>
-        <member name="M:WebApiSample.Controllers.ModelController.AddModel(WebApiSample.Models.Model)">
+        <member name="M:WebApiSample.Controllers.AccountController.GetAccount(System.Int32)">
+            <summary>
+            获取账户
+            </summary>
+            <param name="id">账户id索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Controllers.AccountController.GetAccountsByOwnerId(System.Int32)">
+            <summary>
+            获取Owner下的所有账户
+            </summary>
+            <param name="ownerId">owner Id索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Controllers.ModelController.AddModel(Entities.Models.Model)">
              <summary>
              添加模型
              </summary>
@@ -20,6 +34,12 @@
              </remarks>
              <param name="model">模型名称</param>
              <returns></returns>
+        </member>
+        <member name="M:WebApiSample.Controllers.ModelController.GetModels">
+            <summary>
+            获取所有模型
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:WebApiSample.Controllers.ValuesController.Get(System.Int32)">
             <summary>
@@ -47,6 +67,12 @@
             </summary>
             <param name="id">id</param>
         </member>
+        <member name="M:WebApiSample.Controllers.WrapperController.Get">
+            <summary>
+            获取所有的sinzone账户信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureCors(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             配置跨域 
@@ -62,6 +88,19 @@
         <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureSwaggerGen(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             配置Swagger中间件
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureSqliteContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            配置连接数据库
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureRepositoryWrapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            加入存储库
             </summary>
             <param name="services"></param>
         </member>

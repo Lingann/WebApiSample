@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebApiSample.Context;
-using WebApiSample.Models;
+using Entities;
+using Entities.Models;
 namespace WebApiSample.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/model")]
     [ApiController]
     public class ModelController : ControllerBase
     {
-        ModelDbContext Context { get; set; }
-        public ModelController(ModelDbContext context)
+        private RepositoryContext _repoContext;
+        public ModelController(RepositoryContext repoContext)
         {
-            Context = context;
+            _repoContext = repoContext;
         }
 
         /// <summary>
@@ -35,13 +35,17 @@ namespace WebApiSample.Controllers
         [HttpPost]
         public Model AddModel([FromForm]Model model)
         {
-            Context.Models.Add(model);
-            Context.SaveChanges();
+            _repoContext.Models.Add(model);
+            _repoContext.SaveChanges();
             return model;
         }
 
+        /// <summary>
+        /// 获取所有模型
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Model> GetModels() => Context.Models.ToList();
+        public IEnumerable<Model> GetModels() => _repoContext.Models.ToList();
       
 
     }

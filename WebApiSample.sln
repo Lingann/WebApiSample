@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1082
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiSample", "WebApiSample\WebApiSample.csproj", "{E454B8AD-F515-4DC3-9AE7-280862C2C4F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{4C7DF0F9-6D57-4D79-A55F-3DA61E498668}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{4C7DF0F9-6D57-4D79-A55F-3DA61E498668}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{C3C2F98A-3C3C-402C-992C-1A47D09FBE49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{C3C2F98A-3C3C-402C-992C-1A47D09FBE49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{E46272D5-FBEF-4ACE-B80B-2C9C577DB20B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C3C2F98A-3C3C-402C-992C-1A47D09FBE49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3C2F98A-3C3C-402C-992C-1A47D09FBE49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3C2F98A-3C3C-402C-992C-1A47D09FBE49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E46272D5-FBEF-4ACE-B80B-2C9C577DB20B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E46272D5-FBEF-4ACE-B80B-2C9C577DB20B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E46272D5-FBEF-4ACE-B80B-2C9C577DB20B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46272D5-FBEF-4ACE-B80B-2C9C577DB20B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
