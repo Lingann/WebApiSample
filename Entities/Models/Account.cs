@@ -18,7 +18,19 @@ namespace Entities.Models
 
         [Column("account_type")]
         public  string AccountType { get; set; }
-    
+
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        [Column("user_name")]
+        public string UserName { get; set; }
+        
+        /// <summary>
+        /// 账号
+        /// </summary>
+        [Column("password")]
+        public string Password { get; set; }
+
         [Column("owner_id")]
         [ForeignKey(nameof(Owner))] // 外键属性，用于声明一个账户仅与一个所有者相关
         public int OwnerId { get; set; }

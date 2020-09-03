@@ -36,7 +36,7 @@ namespace WebApiSample.Controllers
         /// </summary>
         /// <param name="ownerId">owner Id索引</param>
         /// <returns></returns>
-        [HttpGet("GetAccountsByOwnerId/{ownerId}")]
+        [HttpGet("{ownerId}")]
         public ICollection<Account> GetAccountsByOwnerId(int ownerId)
         {
             return _repoWrapper.Account.GetAccountsByOwnerId(ownerId);

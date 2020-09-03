@@ -12,6 +12,11 @@ using Microsoft.Extensions.Configuration;
 using Entities;
 using Repository;
 using Contracts;
+using LoggerService;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 namespace WebApiSample.Extensions
 {
     public static class ServiceExtensions
@@ -90,6 +95,46 @@ namespace WebApiSample.Extensions
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
         {
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+        }
+
+
+        /// <summary>
+        /// 配置日志服务
+        /// </summary>
+        /// <param name="services"></param>
+        public static void ConfigureLoggerService(this IServiceCollection services)
+        {
+            services.AddSingleton<ILoggerManager, LoggerManager>();
+        }
+
+        /// <summary>
+        /// 配置JWT服务
+        /// </summary>
+        /// <param name="services"></param>
+       public static void ConfigureAuthentication(this IServiceCollection services)
+        {
+            services.AddAuthentication( opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    // The issuer is the actual server that created the token (ValidateIssuer=true)
+                    ValidateIssuer = true,
+                    // The receiver of the token is a valid recipient(ValidateAudience = true)
+                    ValidateAudience = true,
+                    // The token has not expired (ValidateLifetime=true)
+                    ValidateLifetime = true,
+                    // The signing key is valid and is trusted by the server (ValidateIssuerSigningKey=true)
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = "https://localhost:5001",
+                    ValidAudience = "https://localhost:5001",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lingann.m@gmail.com"))
+                };
+            });
         }
     }
 }

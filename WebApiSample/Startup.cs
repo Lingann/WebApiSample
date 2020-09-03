@@ -10,8 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using WebApiSample.Models;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using WebApiSample.Extensions;
 namespace WebApiSample
 {
@@ -40,6 +39,10 @@ namespace WebApiSample
             services.ConfigureSqliteContext(Configuration);
             // 添加存储库
             services.ConfigureRepositoryWrapper();
+            // 配置日志
+            services.ConfigureLoggerService();
+            // 配置JWT
+            services.ConfigureAuthentication();
 
         }
 
@@ -61,9 +64,16 @@ namespace WebApiSample
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-            //app.UseStaticFiles();
+            // 使用静态文件，这样可以房屋wwwroot文件目录
+            app.UseStaticFiles();
+            // 配置HTTP反射
             app.UseHttpsRedirection();
-            app.UseMvc();   // 启用MVC模式，声明了属性路由
+            // 启用MVC模式，声明了属性路由
+            app.UseMvc();
+            // 配置跨域
+            app.UseCors("EnableCORS");
+            // 配置JWT身份验证
+            app.UseAuthentication();
         }
     }
 }

@@ -104,6 +104,18 @@
             </summary>
             <param name="services"></param>
         </member>
+        <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureLoggerService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            配置日志服务
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            配置JWT服务
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="M:WebApiSample.Models.ISQLiteHelper.ExecuteQuery(System.String)">
             <summary>
             执行SQL命令

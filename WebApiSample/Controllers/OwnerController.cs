@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Entities.Models;
 using Contracts;
 using System.Collections.ObjectModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApiSample.Controllers
 {
@@ -23,6 +24,7 @@ namespace WebApiSample.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public Owner GetOwner(int ownerId)
         {
             var owner = _repoWrapper.Owner.GetOwnerById(ownerId);
