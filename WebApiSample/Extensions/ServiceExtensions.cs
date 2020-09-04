@@ -16,6 +16,8 @@ using LoggerService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Services.Authenciate;
+using Contracts.Services;
 
 namespace WebApiSample.Extensions
 {
@@ -82,8 +84,7 @@ namespace WebApiSample.Extensions
         /// 配置连接数据库
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="config"></param>
-        public static void ConfigureSqliteContext(this IServiceCollection services, IConfiguration config)
+        public static void ConfigureSqliteContext(this IServiceCollection services)
         {
             services.AddDbContext<RepositoryContext>();
         }
@@ -111,16 +112,21 @@ namespace WebApiSample.Extensions
         /// 配置JWT服务
         /// </summary>
         /// <param name="services"></param>
-       public static void ConfigureAuthentication(this IServiceCollection services)
+        /// <param name="config"></param>
+       public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration config)
         {
-            services.AddAuthentication( opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
+            services.Configure<AuthSettings>(config.GetSection("AuthSettings"));
+
+            services.AddScoped<IAuthService, AuthService>();
+
+            services.AddAuthentication(opt =>
+           {
+               opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+               opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+           }).AddJwtBearer(options =>
+           {
+               options.TokenValidationParameters = new TokenValidationParameters
+               {
                     // The issuer is the actual server that created the token (ValidateIssuer=true)
                     ValidateIssuer = true,
                     // The receiver of the token is a valid recipient(ValidateAudience = true)
@@ -130,11 +136,11 @@ namespace WebApiSample.Extensions
                     // The signing key is valid and is trusted by the server (ValidateIssuerSigningKey=true)
                     ValidateIssuerSigningKey = true,
 
-                    ValidIssuer = "https://localhost:5001",
-                    ValidAudience = "https://localhost:5001",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lingann.m@gmail.com"))
-                };
-            });
+                   ValidIssuer = "https://localhost:5001",
+                   ValidAudience = "https://localhost:5001",
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lingann.m@gmail.com"))
+               };
+           });
         }
     }
 }

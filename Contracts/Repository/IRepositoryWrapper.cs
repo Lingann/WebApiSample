@@ -1,4 +1,5 @@
-﻿using Repository;
+﻿using Contracts.Service;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Contracts
     
         IAccountRepository Account { get; }
 
+        IUserRepository User { get; }
         void Save();
     }
 }

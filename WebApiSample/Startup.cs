@@ -12,6 +12,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using WebApiSample.Extensions;
+using WebApiSample.Helpers;
+using Services.Authenciate;
+
 namespace WebApiSample
 {
     public class Startup
@@ -36,13 +39,13 @@ namespace WebApiSample
             // 配置Swagger
             services.ConfigureSwaggerGen();
             // 连接数据库
-            services.ConfigureSqliteContext(Configuration);
+            services.ConfigureSqliteContext();
             // 添加存储库
             services.ConfigureRepositoryWrapper();
             // 配置日志
             services.ConfigureLoggerService();
             // 配置JWT
-            services.ConfigureAuthentication();
+            services.ConfigureAuthentication(Configuration);
 
         }
 
@@ -72,8 +75,9 @@ namespace WebApiSample
             app.UseMvc();
             // 配置跨域
             app.UseCors("EnableCORS");
-            // 配置JWT身份验证
+            // 配置JWT身份验证, 添加JWT中间件
             app.UseAuthentication();
+            //app.UseMiddleware<JwtMiddleware>();
         }
     }
 }
