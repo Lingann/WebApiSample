@@ -37,7 +37,14 @@ namespace Services.Authenciate
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { 
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                }),
+                // 发行者
+                Issuer = _authSettings.Issuer,
+
+                // 订阅者
+                Audience = _authSettings.Audience,
                 
                 // 生成的token校验保存7天
                 Expires = DateTime.UtcNow.AddDays(7),
@@ -48,6 +55,11 @@ namespace Services.Authenciate
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public bool IsValid(AuthenticateRequest request)
+        {
+            return true;
         }
     }
 }

@@ -11,10 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using WebApiSample.Extensions;
-using WebApiSample.Helpers;
 using Services.Authenciate;
-
 namespace WebApiSample
 {
     public class Startup
@@ -60,6 +59,17 @@ namespace WebApiSample
             {
                 app.UseHsts();
             }
+            // 通过ASP.NET Core配置授权认证，读取客户端中的身份标识(Cookie,Token等)并解析出来，存储到context.User中
+            app.UseAuthentication();
+            // 判断当前访问Endpoint(Controller或Action)是否使用了[Authorize]以及配置角色或策略，然后校验Cookie或Token是否有效
+            //app.UseAuthorization();
+
+            // 启用MVC模式，声明了属性路由
+            app.UseMvc();
+
+            //app.UseAuthorization();
+            // 配置跨域
+            app.UseCors("EnableCORS");
 
             // 添加Swagger UI中间件
             app.UseSwagger();
@@ -71,13 +81,7 @@ namespace WebApiSample
             app.UseStaticFiles();
             // 配置HTTP反射
             app.UseHttpsRedirection();
-            // 启用MVC模式，声明了属性路由
-            app.UseMvc();
-            // 配置跨域
-            app.UseCors("EnableCORS");
-            // 配置JWT身份验证, 添加JWT中间件
-            app.UseAuthentication();
-            //app.UseMiddleware<JwtMiddleware>();
+
         }
     }
 }

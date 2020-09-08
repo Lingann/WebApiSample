@@ -28,6 +28,7 @@ namespace WebApiSample.Controllers
             _repoWarpper = repositoryWrapper;
         }
 
+        [AllowAnonymous]
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromForm] AuthenticateRequest model)
         {

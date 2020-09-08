@@ -101,7 +101,6 @@
             配置连接数据库
             </summary>
             <param name="services"></param>
-            <param name="config"></param>
         </member>
         <member name="M:WebApiSample.Extensions.ServiceExtensions.ConfigureRepositoryWrapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>

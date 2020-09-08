@@ -115,6 +115,8 @@ namespace WebApiSample.Extensions
         /// <param name="config"></param>
        public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration config)
         {
+            var authSettings = config.GetSection("AuthSettings").Get<AuthSettings>();
+
             services.Configure<AuthSettings>(config.GetSection("AuthSettings"));
 
             services.AddScoped<IAuthService, AuthService>();
@@ -125,20 +127,33 @@ namespace WebApiSample.Extensions
                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
            }).AddJwtBearer(options =>
            {
+               options.RequireHttpsMetadata = false;
+
+               options.SaveToken = true;
+
                options.TokenValidationParameters = new TokenValidationParameters
                {
                     // The issuer is the actual server that created the token (ValidateIssuer=true)
-                    ValidateIssuer = true,
+                    ValidateIssuer = false,
+
+                    // 校验Issure
+                    ValidIssuer = authSettings.Issuer,
+
                     // The receiver of the token is a valid recipient(ValidateAudience = true)
-                    ValidateAudience = true,
+                    ValidateAudience = false,
+
+                    // 校验Audience
+                    ValidAudience = authSettings.Audience,
+
                     // The token has not expired (ValidateLifetime=true)
                     ValidateLifetime = true,
+
                     // The signing key is valid and is trusted by the server (ValidateIssuerSigningKey=true)
                     ValidateIssuerSigningKey = true,
 
-                   ValidIssuer = "https://localhost:5001",
-                   ValidAudience = "https://localhost:5001",
-                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("lingann.m@gmail.com"))
+/*                   ValidIssuer = "https://localhost:5001",
+                   ValidAudience = "https://localhost:5001",*/
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authSettings.Secret))
                };
            });
         }

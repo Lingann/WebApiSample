@@ -13,7 +13,7 @@ using LoggerService;
 using Contracts;
 using Entities.Models;
 
-namespace WebApiSample.Helpers
+namespace Services.Authenciate
 {
     /// <summary>
     /// 自定义JWT中间件

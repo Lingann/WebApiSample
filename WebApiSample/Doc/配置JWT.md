@@ -3,6 +3,7 @@
 - [ASP.NET Core 2.2-带有示例API的基本身份验证教程](https://jasonwatmore.com/post/2018/09/08/aspnet-core-21-basic-authentication-tutorial-with-example-api)
 - [ASP.NET Core 3.1-带有示例API的JWT身份验证教程](https://jasonwatmore.com/post/2019/10/11/aspnet-core-3-jwt-authentication-tutorial-with-example-api#authorize-attribute-cs)
 - [ASP.NET Core JWT 认证](https://beckjin.com/2019/03/24/aspnet-jwt/)
+- [ASP.NET Core 认证与授权[4]:JwtBearer认证](https://www.cnblogs.com/RainingNight/p/jwtbearer-authentication-in-asp-net-core.html)
 ## JWT介绍
 JWT(JSON Web Token)是一种开放标准，它以JSON对象的方式在各方之间安全的传输信息。通俗的说，就是通过数字签名算法生产一个字符串，然后在网络请求的中被携带到服务端进行身份认证，功能上来说和SessionId认证方式很像，
 
